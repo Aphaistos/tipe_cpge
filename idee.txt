@@ -1,0 +1,4 @@
+Thème: traitement du son
+
+- Comment encrypter les appels téléphoniques pour assurer une sécurité de communication ?
+- Comment simuler les effets d'une pédale d'effet sur le signal d'une guitare électrique pour de la production musicale?

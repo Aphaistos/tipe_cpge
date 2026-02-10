@@ -1,0 +1,20 @@
+- Encrypted Voice Calls with IP Enabled Wireless Phones over GSM/ CDMA/ WiFi Networks:
+	- SIO: 10.1109/ICCET.2009.95
+
+- A Novel Comparison between Different Composite Chaotic Maps Applied on Sound Encryption:
+	- SIO: 10.1109/TSP59544.2023.10197783
+
+- FPGA implementation of sound encryption system based on fractional-order chaotic systems:
+	- SIO 10.1016/j.mejo.2019.05.005
+
+- A Multilayered Audio Signal Encryption Approach for Secure
+Voice Communication:
+	- Fichier: electronics-12-00002-v2.pdf
+
+
+- Son et Mathematiques:
+	- Fichier `PDF.js viewer.pdf`
+
+- Cryptographie de l’identité:
+	- Thèse de (F)
+	- Fichier: `2018LIMO0041.pdf`

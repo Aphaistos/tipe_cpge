@@ -1,0 +1,34 @@
+✅ - Définir les enjeux et restrictions à considérer pour le système
+⌛ - Rechercher et définir un système de communication pouvant valider le cahier des charges:
+ == Fondamentaux crypto / identité ==
+ 	* RFC 8032 — Ed25519: Edwards-Curve Digital Signature Algorithm; Base mathématique de l'identité (car je comprends pas de ouf)
+ 	* Signal Protocol Whitepaper: Trevor Perrin, Moxie Marlinspike; Identité longue durée + ratcheting
+
+ == Communications sécurisées ==
+ 	* RFC 5764 / 8827 — DTLS-SRTP / WebRTC Security; Pour comprendre ce que WebRTC ne protège pas
+ 	* RFC 9420 — MLS (Message Layer Security): Architecture moderne d’identités cryptographiques
+
+== Anonymat & métadonnées ==
+	* Metadata-Private Messaging: Green & Smith; Comprendre pourquoi le serveur ne doit rien savoir
+
+✅ - Implémenter une application android SIMPLE pour pouvoir tester le système de chiffrement (sûrement à l'aide WebRTC)
+⌛ - Quel protocole choisir, et pourquoi lui, pour le chiffrement de la voix
+ -
+
+ -
+
+ -
+
+ -
+
+ -
+
+ -
+
+ -
+
+ -
+
+ -
+
+ - FIN: essayer de pirater mon propre système
