@@ -22,3 +22,5 @@ Voice Communication:
 - Real-time-Audio-Encryption:
 	- Github Repository
 	- URL: https://github.com/kavyav5/Real-time-Audio-Encryption.git
+
+https://www.sciencedirect.com/science/article/abs/pii/S0960077925001018
