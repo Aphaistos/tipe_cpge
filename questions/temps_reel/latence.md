@@ -18,5 +18,5 @@ Ce TIPE s'intéresse à la réduction du **délaie de traitement ($T_{traitement
 Le **délai de traitement** est le temps qu'il faut, pour la machine qui envoie le signal audio, à compresser puis chiffrer le flux audio.
 
 Le **délai de réstitution** est le temps qu'il faut, pour la machine qui reçoit le signal audio, à déchiffrer puis décompresser le flux audio.
-
-Au-delà de la latence pure, la **fluidité** dépend de la régularité. Si le délai de traitement varie d'un paquet à l'autre, le son devient haché. <u>**L'optimisation consiste donc à minimiser la latence tout en garantissant une stabilité temporelle.**</u>
+---
+Au-delà de la latence pure, la **fluidité** dépend de la régularité. Si le délai de traitement varie d'un paquet à l'autre, le son devient haché. __**L'optimisation consiste donc à minimiser la latence tout en garantissant une stabilité temporelle.**__
