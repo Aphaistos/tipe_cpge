@@ -5,7 +5,7 @@ La recommandation [**ITU-T G.114**](../../documents/T-REC-G.114-200305-I!!PDF-E.
 
 - <u>0 à 150 ms : **Qualité excellente**.</u> Le délai est imperceptible pour l'utilisateur moyen. C'est l'objectif de l'optimisation pour un système de communication moderne.
 - <u>150 à 400 ms : **Qualité acceptable**.</u> La conversation reste possible, mais les utilisateurs commencent à s'interrompre mutuellement (phénomène de collision de parole).
-- <u>Au-dessus de 400 ms : **Inacceptable**<u>. La communication devient pénible, similaire à une liaison satellite ancienne.
+- <u>Au-dessus de 400 ms : **Inacceptable**<u>. La communication devient pénible.
 
 On cherche à avoir une communication claire, on va donc fixer la limite maximale de latence à **150 ms**.
 
