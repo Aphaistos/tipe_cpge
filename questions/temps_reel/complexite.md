@@ -1,5 +1,5 @@
-[Page principale](https://github.com/Aphaistos/tipe_cpge/) \
-[Page des questions](../questions.md)
+[Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/) \
+[Revenir sur la page des questions](../questions.md)
 
 # L'impact de la complexité algorithmique sur la latence ($T_{traitement}$)
 
