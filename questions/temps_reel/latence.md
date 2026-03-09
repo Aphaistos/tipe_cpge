@@ -3,9 +3,9 @@
 
 La recommandation [**ITU-T G.114**](../../documents/T-REC-G.114-200305-I!!PDF-E.pdf) est la norme de référence mondiale pour la qualité de service (QoS) de la voix sur IP (VoIP). Elle définit trois paliers de latence (délai aller simple) :
 
-- <u>0 à 150 ms : **Qualité excellente**.</u> Le délai est imperceptible pour l'utilisateur moyen. C'est l'objectif de l'optimisation pour un système de communication moderne.
-- <u>150 à 400 ms : **Qualité acceptable**.</u> La conversation reste possible, mais les utilisateurs commencent à s'interrompre mutuellement (phénomène de collision de parole).
-- <u>Au-dessus de 400 ms : **Inacceptable**<u>. La communication devient pénible.
+- <ins> 0 à 150 ms : **Qualité excellente**.</ins> Le délai est imperceptible pour l'utilisateur moyen. C'est l'objectif de l'optimisation pour un système de communication moderne.
+- <ins>150 à 400 ms : **Qualité acceptable**.</ins> La conversation reste possible, mais les utilisateurs commencent à s'interrompre mutuellement (phénomène de collision de parole).
+- <ins>Au-dessus de 400 ms : **Inacceptable**</ins>. La communication devient pénible.
 
 On cherche à avoir une communication claire, on va donc fixer la limite maximale de latence à **150 ms**.
 
@@ -20,4 +20,4 @@ Le **délai de traitement** est le temps qu'il faut, pour la machine qui envoie 
 Le **délai de réstitution** est le temps qu'il faut, pour la machine qui reçoit le signal audio, à déchiffrer puis décompresser le flux audio.
 
 ---
-Au-delà de la latence pure, la **fluidité** dépend de la régularité. Si le délai de traitement varie d'un paquet à l'autre, le son devient haché. __**L'optimisation consiste donc à minimiser la latence tout en garantissant une stabilité temporelle.**__
+Au-delà de la latence pure, la **fluidité** dépend de la régularité. Si le délai de traitement varie d'un paquet à l'autre, le son devient haché. <ins>**L'optimisation consiste donc à minimiser la latence tout en garantissant une stabilité temporelle.**</ins>
