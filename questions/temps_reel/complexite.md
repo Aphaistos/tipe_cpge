@@ -1,4 +1,5 @@
 [Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/)
+[Revenir sur la page des questions](../questions.md)
 # L'impact de la complexité algorithmique sur la latence ($T_{traitement}$)
 
 Un algorithme de chiffrement est dit **"lourd"** s'il nécessite un grand nombre d'opérations élémentaires (additions, multiplications, itérations) pour transformer un bloc de données. On mesure cela par sa **complexité temporelle**.
