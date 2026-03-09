@@ -3,7 +3,7 @@
 
 Un algorithme de chiffrement est dit **"lourd"** s'il nécessite un grand nombre d'opérations élémentaires (additions, multiplications, itérations) pour transformer un bloc de données. En informatique théorique, cela se mesure par sa **complexité temporelle**.
 
-### 1. Le lien entre Complexité et Latence
+### Le lien entre Complexité et Latence
 Si l'on note $N$ la taille des données à chiffrer (un échantillon audio) et $f(N)$ la complexité de l'algorithme, le temps de traitement est proportionnel au nombre d'opérations :
 $$T_{traitement} \approx \frac{k \cdot f(N)}{P_{cpu}}$$
 Où $P_{cpu}$ est la puissance de calcul (opérations par seconde) et $k$ une constante liée à l'implémentation.
