@@ -10,6 +10,7 @@ La recommandation [**ITU-T G.114**](../../documents/T-REC-G.114-200305-I!!PDF-E.
 On cherche à avoir une communication claire, on va donc fixer la limite maximale de latence à **150 ms**.
 
 La latence de notre système de communication se décompose en la somme de plusieurs facteurs d'optimisation:
+
 $$T_{total} = T_{captation} + T_{traitement} + T_{réseau} + T_{restitution}$$
 
 Ce TIPE s'intéresse à la réduction du **délaie de traitement ($T_{traitement}$)** et du **délai de réstitution ($T_{restitution}$)**.
