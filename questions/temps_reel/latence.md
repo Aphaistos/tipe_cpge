@@ -1,7 +1,7 @@
 [Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/)
 # Quelle est la limite de temps acceptable pour qu'une conversation reste fluide ?
 
-La recommandation **ITU-T G.114** est la norme de référence mondiale pour la qualité de service (QoS) de la voix sur IP (VoIP). Elle définit trois paliers de latence (délai aller simple) :
+La recommandation [**ITU-T G.114**](../../documents/T-REC-G.114-200305-I!!PDF-E.pdf) est la norme de référence mondiale pour la qualité de service (QoS) de la voix sur IP (VoIP). Elle définit trois paliers de latence (délai aller simple) :
 
 - <u>0 à 150 ms : **Qualité excellente**.</u> Le délai est imperceptible pour l'utilisateur moyen. C'est l'objectif de l'optimisation pour un système de communication moderne.
 - <u>150 à 400 ms : **Qualité acceptable**.</u> La conversation reste possible, mais les utilisateurs commencent à s'interrompre mutuellement (phénomène de collision de parole).
