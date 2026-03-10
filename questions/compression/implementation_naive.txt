@@ -1,0 +1,6 @@
+[Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/) \
+[Revenir sur la page des questions](../questions.md)
+
+# Quelle est l'implémentation naïve pour la compression d'un signal audio ?
+
+Pour compresser un signal audio de manière naïve, on cherche à réduire la redondance statistique et à simplifier la précision temporelle.
