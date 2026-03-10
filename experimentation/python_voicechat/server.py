@@ -46,7 +46,7 @@ print(f"Connected from {addr}")
 threading.Thread(target=handle_exit, daemon=True).start()
 
 while running:
-    packet = recv_exact(conn, HEADER_SIZE + CHUNK)
+    packet = conn.recv(HEADER_SIZE + CHUNK)
     if not packet:
         break
 
