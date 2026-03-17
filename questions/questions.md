@@ -2,7 +2,7 @@
 
 # Questions du sujet
 
-- [Comment représenter sur une machine un flux audio?](./representation_flux_audio.md)
+- [Comment représenter numériquement un flux audio?](./representation_flux_audio.md)
 
 ## Sur le "temps réel"
 - [Quelle est la limite de temps acceptable pour qu'une conversation reste fluide ?](./temps_reel/latence.md)
