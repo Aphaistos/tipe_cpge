@@ -7,6 +7,8 @@
 - [Quel est l'impact de la complexité temporelle de l'algorithme sur la latence ?](./temps_reel/complexite.md)
 - En streaming vocal, si un "paquet" de données est perdu ou arrive en retard, comment l'algorithme doit-il réagir pour ne pas casser la communication ?
 
+- [Comment représenter sur une machine un flux audio?](./representation_flux_audio.md)
+
 ## Sur la compression
 - [Quelles sont les limites mathématiques de la compression ? Jusqu'où peut-on réduire la taille des données avant que le message ne devienne inaudible ?](./compression/limites.md)
 - Comment mesurer la quantité d'information réelle dans un signal vocal pour supprimer les redondances ?
