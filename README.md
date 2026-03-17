@@ -6,3 +6,6 @@
 
 ## Introduction
 *N'est pas encore rédigée.*
+
+## Remerciments
+![Ma superbe image](./1lxiox.jpg)
