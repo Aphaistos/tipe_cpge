@@ -1,5 +1,5 @@
 [Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/) \
-[Revenir sur la page des questions](./questions.md)
+[Revenir sur la page des questions](../questions.md)
 
 # Comment représenter numériquement un flux audio?
 
@@ -11,7 +11,7 @@
 
 ### L'échantillonnage (Sampling)
   On prélève la valeur du signal à intervalles de temps réguliers $T_s$. 
-<ins>Selon le théorème de Shannon-Nyquist</ins>, pour reconstruire fidèlement un signal de fréquence maximale $f_{max}$, la fréquence d'échantillonnage $f_s = \frac{1}{T_s}$ doit vérifier $f_s > 2 f_{max}$. Pour la voix humaine, une fréquence de $8\,000$ Hz à $16\,000$ Hz est généralement suffisante.
+[Selon le théorème de Shannon-Nyquist](../../documents/bibnum-1190.pdf), pour reconstruire fidèlement un signal de fréquence maximale $f_{max}$, la fréquence d'échantillonnage $f_s = \frac{1}{T_s}$ doit vérifier $f_s > 2 f_{max}$. Pour la voix humaine, une fréquence de $8\,000$ Hz à $16\,000$ Hz est généralement suffisante.
 
 ### La quantification (Quantization) : 
   On approche la valeur de l'amplitude échantillonnée par l'élément le plus proche d'un ensemble fini de valeurs (codage sur $n$ bits).
