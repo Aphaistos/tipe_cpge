@@ -27,4 +27,4 @@
 La compléxité spatiale d'une telle représentation est en $O(T \cdot f_s)$ pour une durée $T$. Sans compression, une minute d'audio haute fidélité occupe environ 10 Mo, ce qui est inefficace pour une transmission temps réel sur des réseaux contraints.
 
 ## Enjeux de la compression et de la complexité
-  Pour respecter la contrainte de latence de 150 ms ([voir contrainte de communication](./temps_reel/latence.md)), la compression est indispensable. Elle réduit $D$ pour diminuer le temps de transmission réseau ($T_{réseau}$), mais elle ajoute une charge de calcul ($T_{traitement}$). Ainsi, l'algorithme de compression doit s'exécuter en un temps $t < T_{budget}$ pour éviter de hacher le flux.
+  Pour respecter la contrainte de latence de 150 ms ([voir contrainte de communication](../temps_reel/latence.md)), la compression est indispensable. Elle réduit $D$ pour diminuer le temps de transmission réseau ($T_{réseau}$), mais elle ajoute une charge de calcul ($T_{traitement}$). Ainsi, l'algorithme de compression doit s'exécuter en un temps $t < T_{budget}$ pour éviter de hacher le flux.
