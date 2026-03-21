@@ -18,7 +18,9 @@
 
 ## Contraintes de données
   La représentation brute d'un flux audio (format PCM - Pulse Code Modulation) génère une quantité massive de données. Le débit binaire ($D$) exprime la quantité d'information transmise par unité de temps :
+  
   $$D = f_s \times n \times c$$
+
 - $f_s$ : Fréquence d'échantillonnage (ex: 8 000 Hz pour la voix, 44 100 Hz pour la musique).
 - $n$ : Résolution (ex: 16 bits).
 - $c$ : Nombre de canaux (1 pour mono, 2 pour stéréo).
