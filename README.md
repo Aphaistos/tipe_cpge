@@ -2,7 +2,7 @@
 ## *Comment sécuriser une communication vocale en temps réels ? (Compressions audios, Chiffrements de flux)*
 - **Matières**: Mathématiques et Informatique
 - **Questions**: [Voir la page](./questions/questions.md)
-- **Lien de départ**: [Découvrir la cryptographie](https://www.bibmath.net/crypto/)
+- **Document de départ**: [Comprendre la compression du son](./documents/Potiron.pdf)
 
 ## Introduction
 *N'est pas encore rédigée.*
