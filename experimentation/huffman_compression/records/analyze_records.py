@@ -59,7 +59,7 @@ def save_compressed_file(filename, encoded_string, codes):
 
     return len(byte_array)
 
-filename = 'records/la_0_1_amp.wav'
+filename = 'low_entropy.wav'
 
 # --- CONFIGURATION ---
 FS = 44100
