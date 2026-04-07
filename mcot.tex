@@ -14,10 +14,10 @@
 
 \maketitle
 
-\section{Motivation (50 mots max)}
+\section{Motivation}
 Passionné par la cybersécurité, j'ai constaté que le chiffrement de flux audio est souvent limité par la bande passante et la latence. Je souhaite relever ce défi en étudiant comment la réduction d'entropie permet d'intégrer un chiffrement robuste sans altérer la fluidité d'une communication en temps réel.
 
-\section{Ancrage (50 mots max)}
+\section{Ancrage}
 Ce projet s'inscrit dans le thème par l'étude de l'efficacité et de la sécurité des échanges d'informations. En optimisant le rapport entre compression et coût computationnel du chiffrement, je traite de la performance des protocoles de communication, pilier des infrastructures numériques modernes.
 
 \section*{Positionnement thématique}
@@ -42,7 +42,7 @@ Le chiffrement intervient sur le flux compressé pour garantir que les probabili
 
 Le défi majeur de cette chaîne de traitement (compression + chiffrement) réside dans le respect de la continuité temporelle. La recommandation ITU-T G.114 fixe une limite de latence de bout en bout de 150 ms pour garantir une interactivité acceptable [4]. Ce délai total ($T_{total}$) est la somme des temps de captation, de traitement ($T_{traitement}$), de réseau et de restitution [4].$$T_{total} = T_{captation} + T_{traitement} + T_{réseau} + T_{restitution}$$La littérature souligne que la complexité algorithmique, notamment lors des calculs de FFT ou de transformations de clés, est la principale source de gigue (jitter) au niveau de $T_{traitement}$ [2]. Cette instabilité temporelle, variable selon l'environnement d'exécution (système d'exploitation), menace directement le respect du budget de 150 ms [4]. L'étude des solutions existantes montre une incompatibilité fréquente entre une compression très poussée (gourmande en CPU) et le maintien d'une latence faible [3, 4].
 
-\section{Problématique (50 mots max)}
+\section{Problématique}
 Comment l'optimisation de la compression audio par réduction d'entropie permet-elle de libérer suffisamment de ressources temporelles pour garantir un chiffrement efficace du flux sans dépasser les contraintes de latence du temps réel ?
 
 \section{Objectifs}
