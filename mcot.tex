@@ -14,10 +14,10 @@
 
 \maketitle
 
-\section{Motivation}
+\section*{Motivation}
 Passionné par la cybersécurité, j'ai constaté que le chiffrement de flux audio est souvent limité par la bande passante et la latence. Je souhaite relever ce défi en étudiant comment la réduction d'entropie permet d'intégrer un chiffrement robuste sans altérer la fluidité d'une communication en temps réel.
 
-\section{Ancrage}
+\section*{Ancrage}
 Ce projet s'inscrit dans le thème par l'étude de l'efficacité et de la sécurité des échanges d'informations. En optimisant le rapport entre compression et coût computationnel du chiffrement, je traite de la performance des protocoles de communication, pilier des infrastructures numériques modernes.
 
 \section*{Positionnement thématique}
@@ -33,7 +33,7 @@ Ce projet s'inscrit dans le thème par l'étude de l'efficacité et de la sécur
     Latence temps réel & Real-time latency \\
 \end{tabular*}
 
-\section{Bibliographie commentée}
+\section*{Bibliographie commentée}
 La sécurisation d'une communication vocale en temps réel repose sur un compromis critique entre l'efficacité de la protection et la fluidité de l'échange. Cette problématique s'articule autour de deux axes techniques successifs : la réduction de l'entropie de la source par compression, puis l'application d'un système de secret robuste.
 
 Une source audio continue présente une redondance élevée que la théorie de Shannon cherche à minimiser pour atteindre un débit binaire proche de l'entropie de la source [1]. Si le codage statistique permet une réduction sans perte, l'introduction de la Transformée de Fourier Rapide (FFT) permet d'exploiter la redondance spectrale du signal [2]. En passant dans le domaine fréquentiel, il devient possible d'appliquer des seuils de quantification basés sur des critères de fidélité psychoacoustiques [1]. Cette étape est essentielle car elle réduit la puissance d'entropie du flux, augmentant ainsi la "distance d'unicité" lors de la phase ultérieure de chiffrement [3].
@@ -42,10 +42,10 @@ Le chiffrement intervient sur le flux compressé pour garantir que les probabili
 
 Le défi majeur de cette chaîne de traitement (compression + chiffrement) réside dans le respect de la continuité temporelle. La recommandation ITU-T G.114 fixe une limite de latence de bout en bout de 150 ms pour garantir une interactivité acceptable [4]. Ce délai total ($T_{total}$) est la somme des temps de captation, de traitement ($T_{traitement}$), de réseau et de restitution [4].$$T_{total} = T_{captation} + T_{traitement} + T_{réseau} + T_{restitution}$$La littérature souligne que la complexité algorithmique, notamment lors des calculs de FFT ou de transformations de clés, est la principale source de gigue (jitter) au niveau de $T_{traitement}$ [2]. Cette instabilité temporelle, variable selon l'environnement d'exécution (système d'exploitation), menace directement le respect du budget de 150 ms [4]. L'étude des solutions existantes montre une incompatibilité fréquente entre une compression très poussée (gourmande en CPU) et le maintien d'une latence faible [3, 4].
 
-\section{Problématique}
+\section*{Problématique}
 Comment l'optimisation de la compression audio par réduction d'entropie permet-elle de libérer suffisamment de ressources temporelles pour garantir un chiffrement efficace du flux sans dépasser les contraintes de latence du temps réel ?
 
-\section{Objectifs}
+\section*{Objectifs}
 L'objectif est de concevoir une chaîne de communication vocale sécurisée respectant la limite de 150 ms de latence de la norme ITU-T G.114. Pour cela, je vais :
 \begin{enumerate}
     \item Implémenter et comparer deux méthodes de compression : le codage statistique et l'analyse fréquentielle par FFT.
@@ -54,12 +54,11 @@ L'objectif est de concevoir une chaîne de communication vocale sécurisée resp
     \item Déterminer un module de chiffrement adapté au flux compressé pour garantir un secret théorique élevé sans compromettre le temps réel.
 \end{enumerate}
 
-\section{Références bibliographiques}
+\section*{Références bibliographiques}
 \begin{enumerate}
     \item Shannon, C. E. (1948). A Mathematical Theory of Communication. (Base de la compression et de l'entropie) .
     \item Potiron, M. (2009). TIPE : Les math´ematiques derrière la compression du son. (Source inspirante pour l'approche fréquentielle) .
     \item Shannon, C. E. (1949). Communication Theory of Secrecy Systems. (Fondement du chiffrement et de la distance d'unicité) .
     \item Recommandation ITU-T G.114 (2003). One-way transmission time. (Norme pour la latence des services de téléphonie) .
 \end{enumerate}
-
 \end{document}
