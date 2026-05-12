@@ -41,7 +41,7 @@ L'algorithme a été testé sur quatre plateformes pour évaluer la gigue induit
 ## Déterminisme et Latence
 
 Bien que plus complexe mathématiquement, l'implémentation itérative avec bit-
-reversal de Cooley-Tukey se révèle plus stable que Huffman. Le temps de traitement médian reste largement sous le budget de $BLOCK\_MS$ (5,8 ms à 20 ms selon la fenêtre), garantissant la fluidité.
+reversal de Cooley-Tukey se révèle plus stable que Huffman. Le temps de traitement médian reste largement sous le budget de *BLOCK_MS* (5,8 ms à 20 ms selon la fenêtre), garantissant la fluidité.
 
 ## Efficacité de la Chaîne de Sécurisation
 
