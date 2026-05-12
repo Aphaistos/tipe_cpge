@@ -4,6 +4,7 @@
 - **MCOT**: [Voir document](./MCOT-MAGIMEL-AURELIEN.pdf)
 - **Questions**: [Voir la page](./questions/questions.md)
 - **Document de départ**: [Comprendre la compression du son](./documents/Potiron.pdf)
+- **Notes:** [Voir la page](./experimentation/notes.md)
 
 ## Présentation
 Ce projet propose une implémentation de la chaîne de sécurisation de la parole en temps réel, articulée autour de la réduction de l'entropie par transformée de Fourier (FFT) et de l'analyse des contraintes de latence déterministe sur systèmes embarqués.
