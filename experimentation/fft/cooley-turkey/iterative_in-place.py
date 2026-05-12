@@ -90,7 +90,7 @@ class SecureAudioProcessor:
 
 if __name__ == "__main__":
     # Paramètres conformes à la téléphonie standard (N=512 à 16kHz ~= 32ms de latence)
-    input_file, output_file, frame_size = "../../records/low_entropy.wav", "output/low_entropy.wav", 512
+    input_file, output_file, frame_size = "../../huffman_compression/records/low_entropy.wav", "output/low_entropy.wav", 512
     
 
     # 1. Chargement et préparation
@@ -109,6 +109,8 @@ if __name__ == "__main__":
     time_axis = []
 
     print(f"Analyse en cours (Blocs de {BLOCK_MS:.2f} ms)...")
+
+    output_audio = np.zeros(len(data) + frame_size)
 
     # 2. Boucle de traitement avec monitoring
     for i in range(0, len(data) - frame_size, hop_size):
@@ -129,6 +131,7 @@ if __name__ == "__main__":
         # --- MONITORING ---
         end_time = time.perf_counter()
 
+        output_audio[i:i+frame_size] += reconstructed_frame * window
         processing_times.append((end_time - start_time) * 1000) # en ms
         entropies.append(calculate_entropy(reconstructed_frame))
         time_axis.append(i / sample_rate * 1000)
@@ -189,3 +192,9 @@ if __name__ == "__main__":
     print(f"Moyenne      : {np.mean(processing_times):.4f} ms")
     print(f"99ème centile: {p99_time:.4f} ms  <-- Garantie de fluidité")
     print(f"Budget total : {BLOCK_MS:.4f} ms")
+    
+    output_audio = np.clip(output_audio, -1.0, 1.0)
+    output_audio = (output_audio * 32767).astype(np.int16)
+
+    wav.write(output_file, sample_rate, output_audio[:len(data)])
+    print(f"Fichier sécurisé généré : {output_file}")
