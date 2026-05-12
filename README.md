@@ -9,3 +9,4 @@
 *N'est pas encore rédigée.*
 
 ## Remerciments
+[Partie KCulture](https://kculture.kgames.fr/?join=X69WNKgQb)
