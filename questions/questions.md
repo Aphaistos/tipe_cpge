@@ -11,6 +11,7 @@
 - [Comment représenter numériquement un flux audio?](./compression/representation_flux_audio.md)
 - [Quelles sont les limites mathématiques de la compression ? Jusqu'où peut-on réduire la taille des données avant que le message ne devienne inaudible ?](./compression/limites.md)
 - Comment mesurer la quantité d'information réelle dans un signal vocal pour supprimer les redondances ?
+- [Quel algorithme choisir pour compresser le flux audio?](./compression/algorithme.md)
 
 ## Sur l'architecture de la sécurité
 - On attend d'avoir un "paquet" de données complet pour le chiffrer. Est-ce compatible avec le temps réel ?
