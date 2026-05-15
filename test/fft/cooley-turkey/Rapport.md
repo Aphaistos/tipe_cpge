@@ -17,11 +17,6 @@ temporelle.
 L'expérience a comparé un codage statistique temporel (Huffman) à une approche
 fréquentielle basée sur la FFT itérative de Cooley-Tukey.
 
-![image](./low-entropy_kali_cooley-turkey.png)
-![image](./low-entropy_rasberry_cooley-turkey.png)
-![image](./low-entropy_windows11_cooley-turkey.png)
-![image](./low-entropy_xubuntu_cooley-turkey.png)
-
 | Métrique | Huffman (Temporel) | Cooley-Tukey (Fréquentiel) |
 | ---- | ---- | ---- |
 | **Entropie Moyenne** | 11,67 bits/sample | 3,89 bits/sample |
@@ -33,6 +28,15 @@ fréquentielle basée sur la FFT itérative de Cooley-Tukey.
 # Impact de l'Environnement Système (Benchmark Multi-OS)
 
 L'algorithme a été testé sur quatre plateformes pour évaluer la gigue induite par l'ordonnanceur (scheduler) de ces dernières.
+
+- **Test sur Kali Linux:**
+![image](./low-entropy_kali_cooley-turkey.png)
+- **Test sur Rasberry OS:**
+![image](./low-entropy_rasberry_cooley-turkey.png)
+- **Test sur Windows 11:**
+![image](./low-entropy_windows11_cooley-turkey.png)
+- **Test sur XUbuntu:**
+![image](./low-entropy_xubuntu_cooley-turkey.png)
 
 | Système d'Exploitation | Médiane $T_{traitement}$ | Stabilité (Gigue) | Observations |
 | ---- | ---- | ---- | ---- |
