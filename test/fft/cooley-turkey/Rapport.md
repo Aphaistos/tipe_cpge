@@ -17,6 +17,11 @@ temporelle.
 L'expérience a comparé un codage statistique temporel (Huffman) à une approche
 fréquentielle basée sur la FFT itérative de Cooley-Tukey.
 
+![image](./low-entropy_kali_cooley-turkey.png)
+![image](./low-entropy_rasberry_cooley-turkey.png)
+![image](./low-entropy_windows11_cooley-turkey.png)
+![image](./low-entropy_xubuntu_cooley-turkey.png)
+
 | Métrique | Huffman (Temporel) | Cooley-Tukey (Fréquentiel) |
 | ---- | ---- | ---- |
 | **Entropie Moyenne** | 11,67 bits/sample | 3,89 bits/sample |
