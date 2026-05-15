@@ -1,3 +1,6 @@
+[Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/) \
+[Revenir sur la page des questions](../questions.md)
+
 # Justification du choix de l'algorithme FFT itératif pour le TIPE
 
 Dans le cadre d'un projet de communication vocale sécurisée en temps réel, le choix de l'implémentation de la Transformée de Fourier Rapide (FFT) est crucial. Bien que la version récursive de Cooley-Tukey soit mathématiquement élégante, la version **itérative (in-place)** est privilégiée pour des raisons techniques majeures liées à la performance et à la stabilité du flux audio.
