@@ -29,14 +29,9 @@ fréquentielle basée sur la FFT itérative de Cooley-Tukey.
 
 L'algorithme a été testé sur quatre plateformes pour évaluer la gigue induite par l'ordonnanceur (scheduler) de ces dernières.
 
-- **Test sur Kali Linux:**
-![image](./low-entropy_kali_cooley-turkey.png)
-- **Test sur Rasberry OS:**
-![image](./low-entropy_rasberry_cooley-turkey.png)
-- **Test sur Windows 11:**
-![image](./low-entropy_windows11_cooley-turkey.png)
-- **Test sur XUbuntu:**
-![image](./low-entropy_xubuntu_cooley-turkey.png)
+| Kali Linux | Rasberry OS | Windows 11 | XUbuntu |
+| ---- | ---- | ---- | ---- |
+| ![](./low-entropy_kali_cooley-turkey.png) | ![](./low-entropy_rasberry_cooley-turkey.png) | ![](./low-entropy_windows11_cooley-turkey.png) | ![](./low-entropy_xubuntu_cooley-turkey.png) |
 
 | Système d'Exploitation | Médiane $T_{traitement}$ | Stabilité (Gigue) | Observations |
 | ---- | ---- | ---- | ---- |
