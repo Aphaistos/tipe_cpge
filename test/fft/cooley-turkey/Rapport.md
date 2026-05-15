@@ -30,7 +30,7 @@ fréquentielle basée sur la FFT itérative de Cooley-Tukey.
 L'algorithme a été testé sur quatre plateformes pour évaluer la gigue induite par l'ordonnanceur (scheduler) de ces dernières.
 
 | Système d'Exploitation | Graphique | Médiane $T_{traitement}$ | Stabilité (Gigue) | Observations |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | **Raspberry Pi (OS)** | ![](./low-entropy_rasberry_cooley-turkey.png) | 3,911 ms | Médiocre | Pics critiques à 140ms (risques de coupures). |
 | **Windows 11** | ![](./low-entropy_windows11_cooley-turkey.png) | 2,632 ms | Moyenne | Bruit de fond constant dû aux autres processus parallèles. |
 | **Kali Linux** | ![](./low-entropy_kali_cooley-turkey.png) | 2,163 ms | Excellente | Compromis idéal entre outils et performance. |
