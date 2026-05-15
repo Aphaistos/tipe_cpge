@@ -20,7 +20,7 @@ fréquentielle basée sur la FFT itérative de Cooley-Tukey.
 | Métrique | Huffman (Temporel) | Cooley-Tukey (Fréquentiel) |
 | ---- | ---- | ---- |
 | **Entropie Moyenne** | 11,67 bits/sample | 3,89 bits/sample |
-| **Complexité** | $O(N)$ | $O(N\log(N))$ |
+| **Complexité** | $ O(N) $ | $ O(N \log(N)) $ |
 | **Stabilité (P99)** | ~18 ms (instable) | **3,38 ms (déterministe)** |
 
 **Observation majeure :** Le passage dans le domaine fréquentiel réduit l'entropie d'un facteur 3. Cette réduction de la redondance augmente la **distance d'unicité** du cryptosystème, rendant la cryptanalyse statistiquement plus complexe.
@@ -41,7 +41,7 @@ L'algorithme a été testé sur quatre plateformes pour évaluer la gigue induit
 ## Déterminisme et Latence
 
 Bien que plus complexe mathématiquement, l'implémentation itérative avec bit-
-reversal de Cooley-Tukey se révèle plus stable que Huffman. Le temps de traitement médian reste largement sous le budget de *BLOCK_MS* (5,8 ms à 20 ms selon la fenêtre), garantissant la fluidité.
+reversal de Cooley-Tukey se révèle plus stable que Huffman. Le temps de traitement médian reste largement sous le budget de $ BLOCK\_MS $ (5,8 ms à 20 ms selon la fenêtre), garantissant la fluidité.
 
 ## Efficacité de la Chaîne de Sécurisation
 

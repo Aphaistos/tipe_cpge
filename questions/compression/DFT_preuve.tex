@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+
+\geometry{margin=25mm}
+
+\titleformat{\section}{\large\bfseries\color{blue!70!black}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\bfseries}{}{0em}{}
+
+\begin{document}
+
+\begin{center}
+    {\huge \textbf{Preuve de la Transformée de Fourier Discrète (DFT)}} \\
+    \vspace{0.5cm}
+    {\large \textit{Contexte : TIPE MP2I - Sécurisation de communication vocale}} \\
+    \vspace{1cm}
+\end{center}
+
+\section{Cadre Algébrique}
+Soit $N \in \mathbb{N}^*$. On travaille dans l'espace vectoriel $E = \mathbb{C}^N$ muni de sa base canonique. Un signal discret est représenté par un vecteur $x = (x_0, x_1, \dots, x_{N-1})$.
+
+On définit $\omega = e^{-i\frac{2\pi}{N}}$. $\omega$ est une racine primitive $N$-ième de l'unité dans $\mathbb{C}$.
+
+La Transformée de Fourier Discrète (DFT) est l'application linéaire $\mathcal{F} : \mathbb{C}^N \to \mathbb{C}^N$ qui à un vecteur $x$ associe le vecteur $X = (X_0, X_1, \dots, X_{N-1})$ défini par :
+\begin{equation}
+X_k = \sum_{n=0}^{N-1} x_n \omega^{kn}, \quad \forall k \in \{0, \dots, N-1\}
+\end{equation}
+
+\section{Représentation Matricielle}
+L'application $\mathcal{F}$ peut être représentée par une matrice de Vandermonde $\Omega \in \mathcal{M}_N(\mathbb{C})$ telle que $X = \Omega x$. Les coefficients de $\Omega$ sont :
+\[ \Omega_{k,n} = \omega^{kn} = (e^{-i\frac{2\pi}{N}})^{kn} \]
+
+\section{Preuve de la formule d'inversion}
+
+Pour prouver que l'on peut reconstruire le signal original $x$ à partir de $X$, nous devons démontrer que la matrice $\Omega$ est inversible et identifier $\Omega^{-1}$.
+
+\subsection{Lemme : Somme des racines de l'unité}
+Soit $q$ un entier. Considérons la somme géométrique :
+\[ S(q) = \sum_{n=0}^{N-1} (\omega^q)^n \]
+
+\begin{itemize}
+    \item \textbf{Cas 1 :} Si $q \equiv 0 \pmod N$, alors $\omega^q = 1$. La somme devient :
+    \[ S(q) = \sum_{n=0}^{N-1} 1 = N \]
+    \item \textbf{Cas 2 :} Si $q \not\equiv 0 \pmod N$, alors $\omega^q \neq 1$. Par la formule des sommes géométriques :
+    \[ S(q) = \frac{1 - (\omega^q)^N}{1 - \omega^q} = \frac{1 - (\omega^N)^q}{1 - \omega^q} \]
+    Or, par définition, $\omega^N = (e^{-i\frac{2\pi}{N}})^N = e^{-i2\pi} = 1$. Donc $S(q) = \frac{1 - 1}{1 - \omega^q} = 0$.
+\end{itemize}
+
+\subsection{Calcul de l'inverse}
+Cherchons à exprimer $x_j$ en fonction de $X_k$. Calculons la quantité suivante :
+\[ \sum_{k=0}^{N-1} X_k \omega^{-kj} \]
+En remplaçant $X_k$ par sa définition :
+\[ \sum_{k=0}^{N-1} \left( \sum_{n=0}^{N-1} x_n \omega^{kn} \right) \omega^{-kj} \]
+Par linéarité, nous pouvons intervertir les sommes :
+\[ \sum_{n=0}^{N-1} x_n \left( \sum_{k=0}^{N-1} \omega^{k(n-j)} \right) \]
+D'après le lemme précédent, la somme intérieure $\sum_{k=0}^{N-1} \omega^{k(n-j)}$ est nulle sauf si $(n-j) \equiv 0 \pmod N$. Comme $n, j \in \{0, \dots, N-1\}$, cela n'arrive que si $n = j$. Dans ce cas, la somme vaut $N$.
+
+Il ne reste donc qu'un seul terme non nul dans la somme extérieure :
+\[ \sum_{k=0}^{N-1} X_k \omega^{-kj} = x_j \cdot N \]
+
+D'où la formule de l'Inverse DFT (iDFT) :
+\begin{equation}
+x_n = \frac{1}{N} \sum_{k=0}^{N-1} X_k e^{i\frac{2\pi}{N} kn}
+\end{equation}
+
+\section{Conclusion pour le TIPE}
+Cette preuve établit que la DFT est une bijection. En informatique, cela garantit que la compression ou le chiffrement dans le domaine fréquentiel ne perdent aucune information structurelle intrinsèque (hors erreur d'arrondi ou quantification volontaire). La transformation préserve l'énergie du signal (Théorème de Parseval), ce qui est un argument physique fort pour la fidélité de la voix reconstruite.
+
+\end{document}
