@@ -20,7 +20,7 @@ fréquentielle basée sur la FFT itérative de Cooley-Tukey.
 | Métrique | Huffman (Temporel) | Cooley-Tukey (Fréquentiel) |
 | ---- | ---- | ---- |
 | **Entropie Moyenne** | 11,67 bits/sample | 3,89 bits/sample |
-| **Complexité** | $ O(N) $ | $ O(N \log(N)) $ |
+| **Complexité** | $O(N)$ | $O(N \log(N))$ |
 | **Stabilité (P99)** | ~18 ms (instable) | **3,38 ms (déterministe)** |
 
 **Observation majeure :** Le passage dans le domaine fréquentiel réduit l'entropie d'un facteur 3. Cette réduction de la redondance augmente la **distance d'unicité** du cryptosystème, rendant la cryptanalyse statistiquement plus complexe.
