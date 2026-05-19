@@ -2,4 +2,4 @@
 
 # Notes de recherche
 
-- **12-mai-2026** (Rapport sur Cooley-Turkey): [Voir rapport](fft/cooley-turkey/Rapport.md)
+- **12-mai-2026** (Rapport sur Cooley-Tukey): [Voir rapport](fft/cooley-tukey/Rapport.md)

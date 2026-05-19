@@ -1,4 +1,4 @@
-[Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/)
+[Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/) \
 [Revenir sur la page des notes](../../notes)
 
 # Rapport de Recherche : Algorithme de Cooley-Tukey
@@ -31,10 +31,10 @@ L'algorithme a été testé sur quatre plateformes pour évaluer la gigue induit
 
 | Système d'Exploitation | Graphique | Médiane $T_{traitement}$ | Stabilité (Gigue) | Observations |
 | ---- | ---- | ---- | ---- | ---- |
-| **Raspberry Pi (OS)** | ![](./low-entropy_rasberry_cooley-turkey.png) | 3,911 ms | Médiocre | Pics critiques à 140ms (risques de coupures). |
-| **Windows 11** | ![](./low-entropy_windows11_cooley-turkey.png) | 2,632 ms | Moyenne | Bruit de fond constant dû aux autres processus parallèles. |
-| **Kali Linux** | ![](./low-entropy_kali_cooley-turkey.png) | 2,163 ms | Excellente | Compromis idéal entre outils et performance. |
-| **Xubuntu (XFCE)** | ![](./low-entropy_xubuntu_cooley-turkey.png) | **2,004 ms** | **Optimale** | L'environnement le plus stable pour le temps réel. |
+| **Raspberry Pi (OS)** | ![](./low-entropy_rasberry_cooley-tukey.png) | 3,911 ms | Médiocre | Pics critiques à 140ms (risques de coupures). |
+| **Windows 11** | ![](./low-entropy_windows11_cooley-tukey.png) | 2,632 ms | Moyenne | Bruit de fond constant dû aux autres processus parallèles. |
+| **Kali Linux** | ![](./low-entropy_kali_cooley-tukey.png) | 2,163 ms | Excellente | Compromis idéal entre outils et performance. |
+| **Xubuntu (XFCE)** | ![](./low-entropy_xubuntu_cooley-tukey.png) | **2,004 ms** | **Optimale** | L'environnement le plus stable pour le temps réel. |
 
 # Interprétation des Résultats pour le TIPE
 
