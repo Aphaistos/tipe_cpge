@@ -1,7 +1,7 @@
 [Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/)
 [Revenir sur la page des notes](../../notes)
 
-# Rapport de Recherche : Algorithme de Cooley-Turkey
+# Rapport de Recherche : Algorithme de Cooley-Tukey
 **Date :** 12 Mai 2026
 
 # Introduction et Problématique
