@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <alsa/asoundlib.h>
@@ -21,7 +22,14 @@ typedef struct
 	double imag;
 } Complex;
 
-// Bit-Reversal
+// Doit correspondre exactement à la structure du client
+typedef struct
+{
+	struct timespec timestamp;
+	Complex fftData[N];
+} Packet;
+
+// Bit-Reversal & IFFT
 unsigned int reverseBits(unsigned int num, unsigned int log2n)
 {
 	unsigned int reverseNum = 0;
@@ -33,7 +41,6 @@ unsigned int reverseBits(unsigned int num, unsigned int log2n)
 	return reverseNum;
 }
 
-// FFT / IFFT de Cooley-Tukey Itératif
 void cooley_tukey(Complex *X, unsigned int size, int inverse)
 {
 	unsigned int log2n = (unsigned int)log2(size);
@@ -81,27 +88,18 @@ void cooley_tukey(Complex *X, unsigned int size, int inverse)
 
 int main()
 {
-	// ---- 1. CONFIGURATION AUDIO ALSA (Lecture / Haut-parleurs) ----
 	snd_pcm_t *pcm_handle;
 	short int audioBuffer[N];
-	Complex recvBuffer[N];
+	Packet recvPacket; // Instance pour stocker le paquet reçu
+	struct timespec arrivalTime;
 
-	// "default" ouvre la sortie audio principale sous XUbuntu
 	if (snd_pcm_open(&pcm_handle, "default", SND_PCM_STREAM_PLAYBACK, 0) < 0)
 	{
 		fprintf(stderr, "Erreur d'ouverture du périphérique de lecture ALSA.\n");
 		return 1;
 	}
+	snd_pcm_set_params(pcm_handle, SND_PCM_FORMAT_S16_LE, SND_PCM_ACCESS_RW_INTERLEAVED, 1, SAMPLE_RATE, 1, 50000);
 
-	snd_pcm_set_params(pcm_handle,
-					   SND_PCM_FORMAT_S16_LE,
-					   SND_PCM_ACCESS_RW_INTERLEAVED,
-					   1, // Mono
-					   SAMPLE_RATE,
-					   1,	   // Autoriser la resynchronisation
-					   50000); // Latence
-
-	// ---- 2. CONFIGURATION RÉSEAU (Sockets POSIX Linux) ----
 	int server_socket;
 	struct sockaddr_in server_addr, client_addr;
 	socklen_t client_addr_len = sizeof(client_addr);
@@ -123,34 +121,45 @@ int main()
 		return 1;
 	}
 
-	printf("[SERVEUR LINUX] Écoute et lecture réseau activées sur le port %d...\n", PORT);
+	printf("[SERVEUR LINUX] Écoute réseau + Mesure de latence active...\n");
 
 	while (1)
 	{
-		// Réception du paquet UDP contenant les complexes
-		int bytes_received = recvfrom(server_socket, (char *)recvBuffer, sizeof(recvBuffer), 0,
+		int bytes_received = recvfrom(server_socket, (char *)&recvPacket, sizeof(Packet), 0,
 									  (struct sockaddr *)&client_addr, &client_addr_len);
 
-		if (bytes_received == sizeof(recvBuffer))
-		{
-			// IFFT : Retour dans le domaine temporel
-			cooley_tukey(recvBuffer, N, 1);
+		// --- CAPTURE IMMÉDIATE DU TIMECODE À LA RÉCEPTION ---
+		clock_gettime(CLOCK_REALTIME, &arrivalTime);
 
-			// Conversion des doubles en short int 16-bit
+		if (bytes_received == sizeof(Packet))
+		{
+
+			// --- CALCUL DE LA LATENCE RESEAU ET TRAITEMENT ---
+			// Différence en secondes et nanosecondes convertie en millisecondes (ms)
+			double diff_sec = (double)(arrivalTime.tv_sec - recvPacket.timestamp.tv_sec);
+			double diff_nsec = (double)(arrivalTime.tv_nsec - recvPacket.timestamp.tv_nsec);
+			double latency_ms = (diff_sec * 1000.0) + (diff_nsec / 1000000.0);
+
+			// Affichage dynamique de la latence de ce paquet
+			printf("\r[Flux Audio] Latence de transmission : %6.3f ms", latency_ms);
+			fflush(stdout);
+
+			// Algorithme de retour au temporel
+			cooley_tukey(recvPacket.fftData, N, 1);
+
 			for (int i = 0; i < N; i++)
 			{
-				audioBuffer[i] = (short int)(recvBuffer[i].real + 0.5);
+				audioBuffer[i] = (short int)(recvPacket.fftData[i].real + 0.5);
 			}
 
-			// Écriture directe sur la carte son (Haut-parleurs)
 			int pcm_rc = snd_pcm_writei(pcm_handle, audioBuffer, N);
 			if (pcm_rc == -EPIPE)
 			{
-				snd_pcm_prepare(pcm_handle); // Récupération en cas d'underrun (si le réseau a du retard)
+				snd_pcm_prepare(pcm_handle);
 			}
 			else if (pcm_rc < 0)
 			{
-				fprintf(stderr, "Erreur d'écriture ALSA : %s\n", snd_pcm_strerror(pcm_rc));
+				fprintf(stderr, "\nErreur d'écriture ALSA : %s\n", snd_strerror(pcm_rc));
 			}
 		}
 	}
