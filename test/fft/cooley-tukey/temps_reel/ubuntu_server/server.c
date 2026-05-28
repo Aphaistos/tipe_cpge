@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <alsa/asoundlib.h>
+#include <pthread.h> // <-- Ajout pour les threads
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -22,14 +23,20 @@ typedef struct
 	double imag;
 } Complex;
 
-// Doit correspondre exactement à la structure du client
 typedef struct
 {
 	struct timespec timestamp;
 	Complex fftData[N];
 } Packet;
 
-// Bit-Reversal & IFFT
+// ---- VARIABLES GLOBALES POUR LES THREADS ----
+pthread_mutex_t mutex_latency = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t cond_latency = PTHREAD_COND_INITIALIZER;
+double shared_latency_ms = -1.0;
+double shared_timestamp_sec = 0.0;
+int keep_running = 1;
+
+// Fonction de Bit-Reversal
 unsigned int reverseBits(unsigned int num, unsigned int log2n)
 {
 	unsigned int reverseNum = 0;
@@ -41,6 +48,7 @@ unsigned int reverseBits(unsigned int num, unsigned int log2n)
 	return reverseNum;
 }
 
+// FFT / IFFT Itératif
 void cooley_tukey(Complex *X, unsigned int size, int inverse)
 {
 	unsigned int log2n = (unsigned int)log2(size);
@@ -86,12 +94,65 @@ void cooley_tukey(Complex *X, unsigned int size, int inverse)
 	}
 }
 
+// ---- CODE DU THREAD SECONDAIRE (ÉCRITURE CSV) ----
+void *csv_logging_thread(void *arg)
+{
+	FILE *csv_file = fopen("latence.csv", "w");
+	if (!csv_file)
+	{
+		perror("Erreur lors de la creation du fichier CSV");
+		return NULL;
+	}
+
+	// Écriture de l'en-tête du fichier CSV
+	fprintf(csv_file, "Temps_Ecoule_s,Latence_ms\n");
+	fflush(csv_file);
+
+	struct timespec start_time;
+	clock_gettime(CLOCK_REALTIME, &start_time);
+
+	while (keep_running)
+	{
+		pthread_mutex_lock(&mutex_latency);
+
+		// Attendre que le thread principal signale l'arrivée d'une nouvelle mesure
+		while (shared_latency_ms < 0 && keep_running)
+		{
+			pthread_cond_wait(&cond_latency, &mutex_latency);
+		}
+
+		if (!keep_running)
+		{
+			pthread_mutex_unlock(&mutex_latency);
+			break;
+		}
+
+		// Calcul du temps relatif par rapport au lancement de l'enregistrement
+		double current_time_s = shared_timestamp_sec - (double)start_time.tv_sec - ((double)start_time.tv_nsec / 1000000000.0);
+		double latency_to_write = shared_latency_ms;
+
+		// Consommation de la donnée
+		shared_latency_ms = -1.0;
+
+		pthread_mutex_unlock(&mutex_latency);
+
+		// Écriture non-bloquante pour le flux audio principal
+		fprintf(csv_file, "%.4f,%.3f\n", current_time_s, latency_to_write);
+		fflush(csv_file); // Force l'écriture sur le disque
+	}
+
+	fclose(csv_file);
+	printf("\n[THREAD CSV] Fichier 'latence.csv' sauvegarde avec succes.\n");
+	return NULL;
+}
+
 int main()
 {
 	snd_pcm_t *pcm_handle;
 	short int audioBuffer[N];
-	Packet recvPacket; // Instance pour stocker le paquet reçu
+	Packet recvPacket;
 	struct timespec arrivalTime;
+	pthread_t log_thread_id;
 
 	if (snd_pcm_open(&pcm_handle, "default", SND_PCM_STREAM_PLAYBACK, 0) < 0)
 	{
@@ -121,30 +182,41 @@ int main()
 		return 1;
 	}
 
-	printf("[SERVEUR LINUX] Écoute réseau + Mesure de latence active...\n");
+	// ---- LANCEMENT DU THREAD ÉCRIVAIN ----
+	if (pthread_create(&log_thread_id, NULL, csv_logging_thread, NULL) != 0)
+	{
+		fprintf(stderr, "Erreur de creation du thread CSV.\n");
+		return 1;
+	}
+
+	printf("[SERVEUR LINUX] Ecoute active, audio operationnel et enregistrement CSV lance...\n");
 
 	while (1)
 	{
 		int bytes_received = recvfrom(server_socket, (char *)&recvPacket, sizeof(Packet), 0,
 									  (struct sockaddr *)&client_addr, &client_addr_len);
 
-		// --- CAPTURE IMMÉDIATE DU TIMECODE À LA RÉCEPTION ---
 		clock_gettime(CLOCK_REALTIME, &arrivalTime);
 
 		if (bytes_received == sizeof(Packet))
 		{
 
-			// --- CALCUL DE LA LATENCE RESEAU ET TRAITEMENT ---
-			// Différence en secondes et nanosecondes convertie en millisecondes (ms)
+			// Calcul de la latence
 			double diff_sec = (double)(arrivalTime.tv_sec - recvPacket.timestamp.tv_sec);
 			double diff_nsec = (double)(arrivalTime.tv_nsec - recvPacket.timestamp.tv_nsec);
 			double latency_ms = (diff_sec * 1000.0) + (diff_nsec / 1000000.0);
 
-			// Affichage dynamique de la latence de ce paquet
-			printf("\r[Flux Audio] Latence de transmission : %6.3f ms", latency_ms);
+			printf("\r[Flux Audio] Latence : %6.3f ms | Fichier CSV en cours de remplissage...", latency_ms);
 			fflush(stdout);
 
-			// Algorithme de retour au temporel
+			// ---- TRANSMISSION SÉCURISÉE AU THREAD CSV ----
+			pthread_mutex_lock(&mutex_latency);
+			shared_latency_ms = latency_ms;
+			shared_timestamp_sec = (double)arrivalTime.tv_sec + ((double)arrivalTime.tv_nsec / 1000000000.0);
+			pthread_cond_signal(&cond_latency); // On réveille le thread écrivain
+			pthread_mutex_unlock(&mutex_latency);
+
+			// Traitement FFT Inverse immédiat sans interruption
 			cooley_tukey(recvPacket.fftData, N, 1);
 
 			for (int i = 0; i < N; i++)
@@ -159,11 +231,15 @@ int main()
 			}
 			else if (pcm_rc < 0)
 			{
-				fprintf(stderr, "\nErreur d'écriture ALSA : %s\n", snd_strerror(pcm_rc));
+				fprintf(stderr, "\nErreur d'ecriture ALSA : %s\n", snd_strerror(pcm_rc));
 			}
 		}
 	}
 
+	// Code de nettoyage (Théorique)
+	keep_running = 0;
+	pthread_cond_signal(&cond_latency);
+	pthread_join(log_thread_id, NULL);
 	snd_pcm_close(pcm_handle);
 	close(server_socket);
 	return 0;
