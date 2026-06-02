@@ -83,7 +83,7 @@ Le chronogramme de la latence en fonction du temps permet d'observer la dynamiqu
 L'observation de la courbe met en relief plusieurs phénomènes critiques :
 * **Un profil en "dents de scie" (Effet Peigne) :** La latence subit des variations brutales d'un paquet à l'autre, oscillant continuellement entre $0$ ms et $15$ ms. Cette instabilité structurelle constitue la définition même du *jitter* réseau.
 * **Périodicité des plages de stabilité :** Les phases où la courbe s'écrase au sol ($\approx 0$ ms) correspondent aux fenêtres de temps où l'ordonnanceur laisse le champ libre à notre application, permettant un traitement fluide et continu des blocs de coefficients.
-* **Le pic critique à $22$ ms :** Visible aux alentours de $t = 24,9$ s, ce *Worst-Case* représente la limite haute de tolérance du système. 
+* **Le pic critique à $22$ ms :** Visible aux alentours de $t = 24,9$ s, ce pire est la limite haute de tolérance du système. 
 
 En corrélant cette observation avec la latence algorithmique de notre buffer ($T_{algo} = \frac{1024}{44100} \approx 23,2$ ms), on en déduit que lors de cette pointe de gigue, la latence cumulée de bout en bout atteint temporairement :
 $$T_{total} = T_{algo} + \text{Jitter}_{max} = 23,2 + 22,0 = 45,2 \text{ ms}$$
