@@ -16,3 +16,4 @@ Le point de départ de ce projet repose sur les travaux de Claude Shannon concer
 Cette constatation a conduit à un pivotement vers le domaine fréquentiel. En introduisant l'algorithme de Cooley-Tukey (FFT), l'idée était de décomposer le signal en ses composantes spectrales pour appliquer une quantification basée sur des critères psychoacoustiques. Cette transition change radicalement la perspective : au lieu de coder des amplitudes temporelles redondantes, on traite des coefficients fréquentiels décorrélés. Cette démarche a permis non seulement de diviser l'entropie par trois, mais aussi d'augmenter significativement la distance d'unicité du système. Ce passage de la "compression statistique" à la "transformation fréquentielle" constitue le cœur de ma recherche, permettant de transformer un signal audio complexe en un flux de données dense et imprévisible, idéal pour un chiffrement robuste et fluide.
 
 ## Remerciments
+https://share.google/tDsMv5bHmK6GiU6Oq
