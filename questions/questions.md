@@ -17,3 +17,7 @@
 ## Sur l'architecture de la sécurité
 - On attend d'avoir un "paquet" de données complet pour le chiffrer. Est-ce compatible avec le temps réel ?
 - On chiffre les bits un par un au fur et à mesure qu'ils arrivent. Pourquoi est-ce théoriquement plus adapté à la voix ?
+
+
+## Les vraies questions maintenant:
+- [Comment comparer la robustesse de deux algorithmes d'encryptions d'un flux audio ?](./methodologie.md)
