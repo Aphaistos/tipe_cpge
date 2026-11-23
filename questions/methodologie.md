@@ -3,7 +3,7 @@
 
 # 2. Protocole de comparaison : FFT (Cooley-Tukey) + SRTP vs ChaCha20-Poly1305
 
-Pour votre démarche expérimentale, vous pouvez confronter les deux chaînes de traitement sur trois critères mesurables :
+Pour la démarche expérimentale, on peut confronter les chaînes de traitement sur trois critères mesurables :
 
 ## A. Le budget de latence temps réel (Contrainte des 150 ms)
 
