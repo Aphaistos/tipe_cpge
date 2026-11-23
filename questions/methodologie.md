@@ -1,7 +1,7 @@
 [Revenir sur la page principale](https://github.com/Aphaistos/tipe_cpge/) \
 [Revenir sur la page des questions](./questions.md)
 
-# 2. Protocole de comparaison : FFT (Cooley-Tukey) + SRTP vs ChaCha20-Poly1305
+# Protocole de comparaison : FFT (Cooley-Tukey) + SRTP vs ChaCha20-Poly1305
 
 Pour la démarche expérimentale, on peut confronter les chaînes de traitement sur trois critères mesurables :
 
